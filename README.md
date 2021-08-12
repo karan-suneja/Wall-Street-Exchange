@@ -1,7 +1,7 @@
 # Wall-Street-Exchange
 Wall-Street Exchange is a Web-App that Collects the data of Stocks & Cryptocurrencies and helps in Analysing it.
 
-#Download
+# Download
 https://drive.google.com/drive/folders/1tKsGIyNI3VRKzzzO7Joaa5cSOmAeCpsi?usp=sharing
 
 # Screenshots
