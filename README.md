@@ -1,5 +1,5 @@
 # Wall-Street-Exchange
-Wall-Street Exchange is a Web-App that Collects the data of Stocks & Cryptocurrencies and helps in Analysing it.
+Wall-Street Exchange is a web-app that collects the data of Stocks & Cryptocurrencies and helps in Analyzing & Price Prediction using Python, Streamlit and Yahoo Finance API.
 
 # Download
 https://drive.google.com/drive/folders/1tKsGIyNI3VRKzzzO7Joaa5cSOmAeCpsi?usp=sharing
