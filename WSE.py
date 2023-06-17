@@ -11,7 +11,6 @@ from PIL import Image
 import datetime as dt
 import math
 import time
-import smtplib, ssl
 import numpy as np
 from bs4 import BeautifulSoup
 import requests
