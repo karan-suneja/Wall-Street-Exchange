@@ -28,7 +28,7 @@ def local_css(file_name):
 local_css("style.css")
 
 #MAIN TITLE
-st.title("\N{Cyclone}WALL-STREET EXCHANGE")
+st.header("\N{Cyclone}WALL-STREET EXCHANGE")
 
 #MAIN IMG
 file = open("5.2.gif", "rb")
