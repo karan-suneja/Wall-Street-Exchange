@@ -1,0 +1,15 @@
+streamlit
+matplotlib
+base64
+numpy
+pandas
+PIL
+bs4
+requests
+tensorflow
+pandas_datareader
+yfinance
+plotly
+beautifulsoup4
+Pillow
+scikit_learn
