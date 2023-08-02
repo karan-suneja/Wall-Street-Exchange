@@ -185,11 +185,6 @@ if submitted1:
         form1.plotly_chart(fig, use_container_width=True, config=config)
 
     form1.markdown("""<style>.stProgress > div > div > div > div {background-color: #00a3ff;}</style>""",unsafe_allow_html=True)
-    my_bar = form1.progress(0)
-    for percent_complete in range(100):
-        time.sleep(0.01)
-        my_bar.progress(percent_complete + 1)
-    
     plot_data()
 
 
@@ -212,10 +207,6 @@ if learn_more :
 submitted3 = form3.form_submit_button('\N{gear}Run Strategy')
 if submitted3:
     form3.markdown("""<style>.stProgress > div > div > div > div {background-color: #0078FF;}</style>""",unsafe_allow_html=True)
-    my_bar = st.progress(0)
-    for percent_complete in range(100):
-        time.sleep(0.01)
-        my_bar.progress(percent_complete + 1)
         
         
     def bssignal(com):
@@ -333,10 +324,6 @@ submitted4 = form4.form_submit_button('\N{gear}Submit')
 if submitted4:
             
     form4.markdown("""<style>.stProgress > div > div > div > div {background-color: #0078FF;}</style>""",unsafe_allow_html=True)
-    my_bar = form4.progress(0)
-    for percent_complete in range(100):
-        time.sleep(0.01)
-        my_bar.progress(percent_complete + 1)
 
 
     #Collecting Data
