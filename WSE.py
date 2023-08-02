@@ -360,7 +360,6 @@ if exp :
   
     submitted2 = exp.button('\N{gear}Run Model')
     if submitted2:
-        exp.text("Training.....")
         exp.text("[This may take a while]")
             
         def pred(user_inp):
@@ -470,7 +469,7 @@ if exp :
             real_data = np.reshape(real_data, (real_data.shape[0], real_data.shape[1], 1))
             prediction = model.predict(real_data)
             prediction = scaler.inverse_transform(prediction)
-            col1, col2 = st.columns(2)
+            col1, col2 = exp.columns(2)
             col1.info("Prediciton Of Closing Price of Stock/Crypto : ")
             col2.info(prediction)
             comp_close = []
