@@ -356,18 +356,15 @@ if submitted4:
 
     form4.plotly_chart(fig, use_container_width=True, config=config)
 
-exp = st.expander("How It Works : ")
+exp = st.expander("Experimental Feature")
 if exp :
     #Stock Predictor
     exp.header("\N{nazar amulet}Stock/Crypto Price Prediction")
     t = f"<div>This feature predicts the Closing Price of the Stock/Crypto of a Corporation using a <span class='highlight blue'>LSTM Model</span></div>"
     exp.markdown(t, unsafe_allow_html=True)
     exp.markdown("")
-    
-
-            
-            
-    submitted2 = st.button('\N{gear}Run Model')
+  
+    submitted2 = exp.button('\N{gear}Run Model')
     if submitted2:
         exp.text("Training.....")
         exp.text("[This may take a while]")
