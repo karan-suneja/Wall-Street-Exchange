@@ -354,7 +354,7 @@ exp = st.expander("Experimental Feature")
 if exp :
     #Stock Predictor
     exp.header("Stock/Crypto Price Prediction")
-    t = f"<div>This feature predicts the Closing Price of the Stock/Crypto of a Corporation using a <span class='highlight blue'>Machine Learning</span></div>"
+    t = f"<div>This feature predicts the Price of the Stock/Crypto using a <span class='highlight blue'>Machine Learning</span></div>"
     exp.markdown(t, unsafe_allow_html=True)
     exp.markdown("")
   
@@ -470,14 +470,14 @@ if exp :
             prediction = model.predict(real_data)
             prediction = scaler.inverse_transform(prediction)
             col1, col2 = exp.columns(2)
-            col1.info("Prediciton Of Closing Price of Stock/Crypto : ")
-            col2.info(prediction)
+            if comp_close[:-2:-1] < prediction:
+                col1.info("The Model Has Predicted That the Close Price Will Go Higher")
+            else:
+                col1.info("The Model Has Predicted That the Close Price Will Go Lower")
+            col2.info("Prediciton Of Closing Price of Stock/Crypto : ",prediction)
             comp_close = []
             comp_close = test_data["Close"].tolist()
-            if comp_close[:-2:-1] < prediction:
-                exp.info("The Model Has Predicted That the Close Price Will Go Higher")
-            else:
-                exp.info("The Model Has Predicted That the Close Price Will Go Lower")
+
             
         pred(user_inp)
         exp.warning("WARNING : Generated Predictions shouldn't Considered to be 100% Correct, This Web-App only works on Currently Availbale Data of the Stock/Crypto.")
