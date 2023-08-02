@@ -295,7 +295,7 @@ if submitted3:
             form3.info("The Model has Predicted that You should Buy the Stocks/Crypto")
             
     bssignal(user_inp)
-    form3.warning("WARNING : Generated Predictions shouldn't Considered to be 100% Correct, This Web-App only works on Currently Availbale Data of the Stock/Crypto.")
+    form3.warning("WARNING : Generated Predictions shouldn't Considered to be 100% Correct, This App only works on currently availbale aata of the Stock/Crypto.")
 
 
 #FORM 4
@@ -355,6 +355,155 @@ if submitted4:
     
 
     form4.plotly_chart(fig, use_container_width=True, config=config)
+
+exp = st.expander("How It Works : ")
+if exp :
+    #FORM 2
+    form2 = st.form("Form2")
+    #Stock Predictor
+    form2.header("\N{nazar amulet}Stock/Crypto Price Prediction")
+    t = f"<div>This feature predicts the Closing Price of the Stock/Crypto of a Corporation using a <span class='highlight blue'>LSTM Model</span></div>"
+    form2.markdown(t, unsafe_allow_html=True)
+    form2.markdown("")
+    
+    #Learn More
+    learn_more = form2.expander("How It Works : ")
+    if learn_more :
+        learn_more_text = "This feature uses an Artificial Recurrent Neural Network Architecture called Long Short-Term Memory(LSTM) to predict the Closing Price. Firstly, The Model is trained on previous data and then a 60 day data is collected to predict the 61th Day's Closing Price i.e, The Next Day's Prediction."
+        learn_more.info(learn_more_text)
+            
+            
+    submitted2 = form2.form_submit_button('\N{gear}Run Model')
+    if submitted2:
+        form2.markdown("""<style>.stProgress > div > div > div > div {background-color: #0078FF;}</style>""",unsafe_allow_html=True)
+        form2.text("Training.....")
+        form2.text("[This may take a while]")
+        my_bar = st.progress(0)
+        for percent_complete in range(100):
+            time.sleep(0.01)
+            my_bar.progress(percent_complete + 1)
+            
+          
+        def pred(user_inp):
+            #getting previous data
+            start = dt.datetime(2012,1,1)
+            end = dt.datetime(2020,1,1)
+            data = tickerData.history(user_inp,start = start, end=end)
+            data.reset_index(inplace=True)
+            df['Date'] = pd.to_datetime(df['Date']).dt.date
+    
+            #scale the data
+            scaler = MinMaxScaler(feature_range=(0,1))
+            scaled_data = scaler.fit_transform(data["Close"].values.reshape(-1,1))
+            prediction_days = 60
+            #create the training data set
+            #split the data into x_train and y_train data sets
+            x_train = []
+            y_train = []
+            for x in range(prediction_days, len(scaled_data)):
+                x_train.append(scaled_data[x-prediction_days:x, 0])
+                y_train.append(scaled_data[x, 0])
+            
+            #convert the x_train and y_train to numpy arrays
+            x_train, y_train = np.array(x_train), np.array(y_train)
+            #reshape the data as lstm models expects 3-dimensional data
+            x_train = np.reshape(x_train, (x_train.shape[0], x_train.shape[1], 1))
+    
+            #build the lstm model
+            model = Sequential()
+            model.add(LSTM(units=50, return_sequences=True, input_shape = (x_train.shape[1], 1)))
+            model.add(Dropout(0.2))
+            model.add(LSTM(50, return_sequences=True))
+            model.add(Dropout(0.2))
+            model.add(LSTM(units=50))
+            model.add(Dropout(0.2))
+            model.add(Dense(1)) #prediction of the next closing value
+    
+            #compile the model
+            model.compile(optimizer ='adam', loss='mean_squared_error')
+            
+            #train the model
+            model.fit(x_train, y_train, epochs=25, batch_size=32)
+            
+            #TESTING THE MODEL ON EXISTING DATA
+            #create the testing dataset
+            test_start = dt.datetime(2020,1,1)
+            test_end = dt.datetime.now()
+            test_data = tickerData.history(user_inp,start=test_start,end=test_end)
+            test_data.reset_index(inplace=True)
+            test_data['Date'] = pd.to_datetime(test_data['Date']).dt.date
+            
+            actual_prices = test_data["Close"].values
+            total_dataset = pd.concat((data["Close"], test_data["Close"]), axis=0)
+    
+            model_inputs = total_dataset[len(total_dataset) - len(test_data) - prediction_days:].values
+            model_inputs = model_inputs.reshape(-1,1)
+            model_inputs = scaler.transform(model_inputs)
+    
+            #create the datasets x_test and y_test
+            x_test = []
+            for i in range(prediction_days, len(model_inputs)):
+                 x_test.append(model_inputs[i-prediction_days:i, 0])
+    
+            #convert the data to numpy
+            x_test = np.array(x_test)
+    
+            #reshape the data
+            x_test = np.reshape(x_test, (x_test.shape[0], x_test.shape[1], 1))
+    
+            #get the model's predicted price values
+            predicted_prices = model.predict(x_test)
+            predicted_prices = scaler.inverse_transform(predicted_prices)
+    
+            #Editing test_data dataframe
+            test_data["Predicted"] = predicted_prices
+            
+            #Plotting Data
+            fig = go.Figure()
+            fig.add_trace(go.Scatter(x=test_data["Date"], y=test_data["Close"], name="actual_price", line_color= "green"))
+            fig.add_trace(go.Scatter(x=test_data["Date"], y=test_data["Predicted"], name="predicted_price", line_color= "blue"))
+            fig.update_layout(legend=dict(orientation="h",yanchor="bottom",y=1.02,xanchor="right",x=1))
+            fig.layout.update(xaxis_rangeslider_visible=True, xaxis_showgrid=False, yaxis_showgrid=False)
+            fig.update_layout(xaxis=dict(rangeselector=dict(buttons=list([
+                        dict(count=1,
+                             label="1m",
+                             step="month",
+                             stepmode="backward"),
+                        dict(count=6,
+                             label="6m",
+                             step="month",
+                             stepmode="backward"),
+                        dict(count=1,
+                             label="1y",
+                             step="year",
+                             stepmode="backward"),
+                        dict(count=1,
+                             label="YTD",
+                             step="year",
+                             stepmode="todate"),
+                        dict(step="all")]), bgcolor = '#0078FF'), rangeslider=dict(visible=True),type="date"), plot_bgcolor="#000000", width = 850, height = 550, hovermode="x unified")
+            config={'modeBarButtonsToAdd':['drawline','drawopenpath','drawcircle','drawrect','eraseshape'], 'displayModeBar': True, 'displaylogo': False}
+            form2.plotly_chart(fig, use_container_width=True, config=config)
+    
+            #Printing Prediced Data
+            real_data = [model_inputs[len(model_inputs) + 1 - prediction_days:len(model_inputs) + 1, 0]]
+            real_data = np.array(real_data)
+            real_data = np.reshape(real_data, (real_data.shape[0], real_data.shape[1], 1))
+            prediction = model.predict(real_data)
+            prediction = scaler.inverse_transform(prediction)
+            col1, col2 = st.columns(2)
+            col1.info("Prediciton Of Closing Price of Stock/Crypto : ")
+            col2.info(prediction)
+            comp_close = []
+            comp_close = test_data["Close"].tolist()
+            if comp_close[:-2:-1] < prediction:
+                form2.info("The Model Has Predicted That the Close Price Will Go Higher")
+            else:
+                form2.info("The Model Has Predicted That the Close Price Will Go Lower")
+            
+        pred(user_inp)
+        form2.warning("WARNING : Generated Predictions shouldn't Considered to be 100% Correct, This Web-App only works on Currently Availbale Data of the Stock/Crypto.")
+
 
 
 st.caption("Designed & Developed by Karan Suneja.")
