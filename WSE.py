@@ -142,7 +142,7 @@ st.markdown("")
 form1 = st.form('Form1')
 
 #Plotting Graphs For Open & Close Price
-form1.header("\N{nazar amulet}Stock/Crypto Open & Close Graph")
+form1.header("Stock/Crypto Price Graph")
 t = f"<div>This feature shows the Graphical Representation of the <span class='highlight blue'>Open & Close Price</span>  Of the selected Stock/Crypto.</div>"
 form1.markdown(t, unsafe_allow_html=True)
 form1.markdown("")
@@ -192,7 +192,7 @@ if submitted1:
 #FORM 3
 form3 = st.form("Form 3")
 #Buy or Sell Indicators
-form3.header("\N{nazar amulet}Stock/Crypto Buy/Sell Strategy")
+form3.header("Stock/Crypto Buy/Sell Strategy")
 t = f"<div>This feature helps to determine when to Buy Or Sell a Stock/Crypto using a <span class='highlight blue'>DEMA Model</span></div>"
 form3.markdown(t, unsafe_allow_html=True)
 form3.markdown("")
@@ -302,7 +302,7 @@ if submitted3:
 form4 = st.form("Form 4")
 
 #OHLC Charts
-form4.header("\N{nazar amulet}Stock/Crypto OHLC Candlestick Charts")
+form4.header("Stock/Crypto Candlestick Charts")
 t = f"<div>This feature shows the <span class='highlight blue'>OHLC Candlestick Charts</span> of the selected Stock/Crypto.</div>"
 form4.markdown(t, unsafe_allow_html=True)
 form4.markdown("")
@@ -314,7 +314,7 @@ if learn_more :
     learn_more.info(learn_more_text)
     form4.markdown(" ")
 
-q1111, q1112 = st.columns(2)
+q1111, q1112 = form4.columns(2)
 with q1111:
     p = form4.selectbox("Data Duration (in Days)",("1", "7","31", "365"))
 with q1112:
@@ -359,7 +359,7 @@ if submitted4:
 exp = st.expander("Experimental Feature")
 if exp :
     #Stock Predictor
-    exp.header("\N{nazar amulet}Stock/Crypto Price Prediction")
+    exp.header("Stock/Crypto Price Prediction")
     t = f"<div>This feature predicts the Closing Price of the Stock/Crypto of a Corporation using a <span class='highlight blue'>Machine Learning</span></div>"
     exp.markdown(t, unsafe_allow_html=True)
     exp.markdown("")
