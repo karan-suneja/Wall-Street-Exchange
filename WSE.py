@@ -438,7 +438,7 @@ if exp :
             
             #Plotting Data
             fig = go.Figure()
-            fig.add_trace(go.Scatter(x=test_data["Date"], y=test_data["Close"], name="actual_price", line_color= "green"))
+            fig.add_trace(go.Scatter(x=test_data["Date"], y=test_data["Close"], name="actual_price", line_color= "cyan"))
             fig.add_trace(go.Scatter(x=test_data["Date"], y=test_data["Predicted"], name="predicted_price", line_color= "blue"))
             fig.update_layout(legend=dict(orientation="h",yanchor="bottom",y=1.02,xanchor="right",x=1))
             fig.layout.update(xaxis_rangeslider_visible=True, xaxis_showgrid=False, yaxis_showgrid=False)
