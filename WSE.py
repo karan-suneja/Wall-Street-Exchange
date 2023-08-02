@@ -358,32 +358,24 @@ if submitted4:
 
 exp = st.expander("How It Works : ")
 if exp :
-    #FORM 2
-    form2 = st.form("Form2")
     #Stock Predictor
-    form2.header("\N{nazar amulet}Stock/Crypto Price Prediction")
+    exp.header("\N{nazar amulet}Stock/Crypto Price Prediction")
     t = f"<div>This feature predicts the Closing Price of the Stock/Crypto of a Corporation using a <span class='highlight blue'>LSTM Model</span></div>"
-    form2.markdown(t, unsafe_allow_html=True)
-    form2.markdown("")
+    exp.markdown(t, unsafe_allow_html=True)
+    exp.markdown("")
     
     #Learn More
-    learn_more = form2.expander("How It Works : ")
+    learn_more = exp.expander("How It Works : ")
     if learn_more :
         learn_more_text = "This feature uses an Artificial Recurrent Neural Network Architecture called Long Short-Term Memory(LSTM) to predict the Closing Price. Firstly, The Model is trained on previous data and then a 60 day data is collected to predict the 61th Day's Closing Price i.e, The Next Day's Prediction."
         learn_more.info(learn_more_text)
             
             
-    submitted2 = form2.form_submit_button('\N{gear}Run Model')
+    submitted2 = st.submit_button('\N{gear}Run Model')
     if submitted2:
-        form2.markdown("""<style>.stProgress > div > div > div > div {background-color: #0078FF;}</style>""",unsafe_allow_html=True)
-        form2.text("Training.....")
-        form2.text("[This may take a while]")
-        my_bar = st.progress(0)
-        for percent_complete in range(100):
-            time.sleep(0.01)
-            my_bar.progress(percent_complete + 1)
+        exp.text("Training.....")
+        exp.text("[This may take a while]")
             
-          
         def pred(user_inp):
             #getting previous data
             start = dt.datetime(2012,1,1)
@@ -483,7 +475,7 @@ if exp :
                              stepmode="todate"),
                         dict(step="all")]), bgcolor = '#0078FF'), rangeslider=dict(visible=True),type="date"), plot_bgcolor="#000000", width = 850, height = 550, hovermode="x unified")
             config={'modeBarButtonsToAdd':['drawline','drawopenpath','drawcircle','drawrect','eraseshape'], 'displayModeBar': True, 'displaylogo': False}
-            form2.plotly_chart(fig, use_container_width=True, config=config)
+            exp.plotly_chart(fig, use_container_width=True, config=config)
     
             #Printing Prediced Data
             real_data = [model_inputs[len(model_inputs) + 1 - prediction_days:len(model_inputs) + 1, 0]]
@@ -497,12 +489,12 @@ if exp :
             comp_close = []
             comp_close = test_data["Close"].tolist()
             if comp_close[:-2:-1] < prediction:
-                form2.info("The Model Has Predicted That the Close Price Will Go Higher")
+                exp.info("The Model Has Predicted That the Close Price Will Go Higher")
             else:
-                form2.info("The Model Has Predicted That the Close Price Will Go Lower")
+                exp.info("The Model Has Predicted That the Close Price Will Go Lower")
             
         pred(user_inp)
-        form2.warning("WARNING : Generated Predictions shouldn't Considered to be 100% Correct, This Web-App only works on Currently Availbale Data of the Stock/Crypto.")
+        exp.warning("WARNING : Generated Predictions shouldn't Considered to be 100% Correct, This Web-App only works on Currently Availbale Data of the Stock/Crypto.")
 
 
 
