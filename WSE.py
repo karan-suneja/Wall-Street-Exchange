@@ -67,8 +67,7 @@ about_more = st.expander("\N{newspaper}About")
 if about_more:
     about_more.info("""
         • \N{CIRCLED INFORMATION SOURCE}Wall-Street Exchange is a Web-app that collects the data of Stocks & Cryptocurrencies and helps in Analyzing & Price Prediction.
-        \n• \N{gear}Version - 3.0.0
-        \n• \N{envelope}Leave a Message : karansuneja14@gmail.com
+        \n• \N{envelope}Leave a Message : https://www.linkedin.com/in/karansuneja/
     """)
 
 st.markdown("----------------------------------------------------")
@@ -147,11 +146,6 @@ t = f"<div>This feature shows the Graphical Representation of the <span class='h
 form1.markdown(t, unsafe_allow_html=True)
 form1.markdown("")
 
-#Learn More
-learn_more = form1.expander("How It Works : ")
-if learn_more :
-    learn_more_text = "Press the button below to see the Graph, \n- If the Close Price is more than Open Price, there's a Profit. \n- If the Open Price is more than Close Price, there's a Loss."
-    learn_more.info(learn_more_text)
 
 submitted1 = form1.form_submit_button('\N{gear}Show Graph')
 if submitted1:
