@@ -476,7 +476,7 @@ if exp :
                 col1.info("The Model Has Predicted That the Close Price Will Go Higher")
             else:
                 col1.info("The Model Has Predicted That the Close Price Will Go Lower")
-            col2.info("Prediciton Of Closing Price of Stock/Crypto : ",prediction)
+            col2.info(f"Prediciton Of Closing Price of Stock/Crypto : {prediction}")
             
 
             
