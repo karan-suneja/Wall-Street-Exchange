@@ -367,7 +367,7 @@ if exp :
 
             
             
-    submitted2 = st.submit_button('\N{gear}Run Model')
+    submitted2 = st.button('\N{gear}Run Model')
     if submitted2:
         exp.text("Training.....")
         exp.text("[This may take a while]")
