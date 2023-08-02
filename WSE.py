@@ -364,11 +364,7 @@ if exp :
     exp.markdown(t, unsafe_allow_html=True)
     exp.markdown("")
     
-    #Learn More
-    learn_more = exp.expander("How It Works : ")
-    if learn_more :
-        learn_more_text = "This feature uses an Artificial Recurrent Neural Network Architecture called Long Short-Term Memory(LSTM) to predict the Closing Price. Firstly, The Model is trained on previous data and then a 60 day data is collected to predict the 61th Day's Closing Price i.e, The Next Day's Prediction."
-        learn_more.info(learn_more_text)
+
             
             
     submitted2 = st.submit_button('\N{gear}Run Model')
