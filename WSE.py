@@ -469,14 +469,15 @@ if exp :
             real_data = np.reshape(real_data, (real_data.shape[0], real_data.shape[1], 1))
             prediction = model.predict(real_data)
             prediction = scaler.inverse_transform(prediction)
+            comp_close = []
+            comp_close = test_data["Close"].tolist()
             col1, col2 = exp.columns(2)
             if comp_close[:-2:-1] < prediction:
                 col1.info("The Model Has Predicted That the Close Price Will Go Higher")
             else:
                 col1.info("The Model Has Predicted That the Close Price Will Go Lower")
             col2.info("Prediciton Of Closing Price of Stock/Crypto : ",prediction)
-            comp_close = []
-            comp_close = test_data["Close"].tolist()
+            
 
             
         pred(user_inp)
