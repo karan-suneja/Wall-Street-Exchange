@@ -21,6 +21,7 @@ from tensorflow.keras.layers import Dense, LSTM, Dropout
 
 #Page Settings
 st.set_page_config(page_title="Wall-Street Exchange",page_icon="\N{Cyclone}",layout = "wide")
+show_spinner=False
 
 def local_css(file_name):
     f = open("style.css")
