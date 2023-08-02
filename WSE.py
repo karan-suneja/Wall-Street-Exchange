@@ -106,8 +106,8 @@ with c1111:
     st.header("")
     st.dataframe(df)
     def V_SPACE(lines):
-    for _ in range(lines):
-        st.write('&nbsp;')
+        for _ in range(lines):
+            st.write('&nbsp;')
     #Button To Download The Stock Data in A CSV Fromat
     def filedownload(df):
         csv = df.to_csv(index=False)
