@@ -316,9 +316,9 @@ if learn_more :
 
 q1111, q1112 = form4.columns(2)
 with q1111:
-    p = form4.selectbox("Data Duration (in Days)",("1", "7","31", "365"))
+    p = st.selectbox("Data Duration (in Days)",("1", "7","31", "365"))
 with q1112:
-    i = form4.selectbox("Interval (in Minutes)",("1m","5m", "15m", "60m","1mo", "3mo"))
+    i = st.selectbox("Interval (in Minutes)",("1m","5m", "15m", "60m","1mo", "3mo"))
 
 submitted4 = form4.form_submit_button('\N{gear}Submit')
 if submitted4:
