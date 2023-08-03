@@ -81,7 +81,7 @@ st.markdown("----------------------------------------------------")
 
 st.title("\N{postbox}Stock/Crypto Data")
 plpl1, plpl2 = st.columns(2)
-with plpl2:
+with plpl1:
     #Parameter Section
     st.subheader("\N{speech balloon}Parameters")
     st.markdown("")
@@ -96,7 +96,7 @@ df = pd.DataFrame(tickerData.history(start=start_date, end=end_date))
 df.reset_index(inplace=True)
 df['Date'] = pd.to_datetime(df['Date']).dt.date
 
-with plpl1:
+with plpl2:
     #Data Section
     st.dataframe(df)
     def V_SPACE(lines):
