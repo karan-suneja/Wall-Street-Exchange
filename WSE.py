@@ -79,7 +79,7 @@ st.divider()
    
     
 
-st.title("\N{postbox}Stock/Crypto Data")
+st.title("\N{speech balloon}}Stock/Crypto Data")
 plpl1, plpl2 = st.columns(2)
 with plpl1:
     #Parameter Section
