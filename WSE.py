@@ -72,47 +72,51 @@ if about_more:
 
 st.markdown("----------------------------------------------------")
 
-#Parameter Section
-st.header("\N{speech balloon}Parameters")
-st.markdown("")
-
-t1, t2, t3 = st.columns(3)
-with t1:
-    user_inp = st.text_input("\N{small blue diamond}Type Ticker of Stock/Crypto", "MSFT", help="Eg : Tesla = TSLA")
-
-with t2:
-    #Start Date
-    start_date = st.date_input("\N{calendar}Select Start Date", dt.date(2021, 1, 1), help = "Should Not Exceed Today's Date")
-
-with t3:    
-    #End Date
-    end_date = st.date_input("\N{tear-off calendar}Select End Date", help = "Should Not Exceed Today's Date")
-
-
 
 # Collecting Data From The Internet
+
+
+   
+    
+
+st.title("\N{postbox}Stock/Crypto Data")
+plpl1, plpl2 = st.columns(2)
+with plpl2:
+    #Parameter Section
+    st.subheader("\N{speech balloon}Parameters")
+    st.markdown("")
+    
+    t1, t2, t3 = st.columns(3)
+    with t1:
+        user_inp = st.text_input("\N{small blue diamond}Type Ticker of Stock/Crypto", "MSFT", help="Eg : Tesla = TSLA")
+    
+    with t2:
+        #Start Date
+        start_date = st.date_input("\N{calendar}Select Start Date", dt.date(2021, 1, 1), help = "Should Not Exceed Today's Date")
+    
+    with t3:    
+        #End Date
+        end_date = st.date_input("\N{tear-off calendar}Select End Date", help = "Should Not Exceed Today's Date")
+
 tickerData = yf.Ticker(user_inp)
 df = pd.DataFrame(tickerData.history(start=start_date, end=end_date))
 df.reset_index(inplace=True)
 df['Date'] = pd.to_datetime(df['Date']).dt.date
 
-   
-st.markdown("-------------------------------------------------------------------------------------------------")    
-    
-#Data Section
-st.title("\N{postbox}Stock/Crypto Data")
-st.header("")
-st.dataframe(df)
-def V_SPACE(lines):
-    for _ in range(lines):
-        st.write('&nbsp;')
-#Button To Download The Stock Data in A CSV Fromat
-def filedownload(df):
-    csv = df.to_csv(index=False)
-    b64 = base64.b64encode(csv.encode()).decode()
-    href = f"<a href = 'data:file/csv;base64, {b64}' download = 'Data.csv'><div><span class='highlight blue' id=download style=font-weight:700;>Download Data File</span></div></a>"
-    return href
-st.markdown(filedownload(df), unsafe_allow_html=True)
+with plpl1:
+    #Data Section
+    st.dataframe(df)
+    def V_SPACE(lines):
+        for _ in range(lines):
+            st.write('&nbsp;')
+    #Button To Download The Stock Data in A CSV Fromat
+    def filedownload(df):
+        csv = df.to_csv(index=False)
+        b64 = base64.b64encode(csv.encode()).decode()
+        href = f"<a href = 'data:file/csv;base64, {b64}' download = 'Data.csv'><div><span class='highlight blue' id=download style=font-weight:700;>Download Data File</span></div></a>"
+        return href
+    st.markdown(filedownload(df), unsafe_allow_html=True)
+
 
 
 st.markdown("-------------------------------------------------------------------------------------------------")
