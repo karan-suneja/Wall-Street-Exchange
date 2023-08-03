@@ -101,38 +101,21 @@ st.markdown("-------------------------------------------------------------------
     
 #Data Section
 st.title("\N{postbox}Stock/Crypto Data")
-tickerData.info
-c1111, c1112 = st.columns(2)
-with c1111:
-    st.header("")
-    st.dataframe(df)
-    def V_SPACE(lines):
-        for _ in range(lines):
-            st.write('&nbsp;')
-    #Button To Download The Stock Data in A CSV Fromat
-    def filedownload(df):
-        csv = df.to_csv(index=False)
-        b64 = base64.b64encode(csv.encode()).decode()
-        href = f"<a href = 'data:file/csv;base64, {b64}' download = 'Data.csv'><div><span class='highlight blue' id=download style=font-weight:700;>Download Data File</span></div></a>"
-        return href
-    st.markdown(filedownload(df), unsafe_allow_html=True)
 
-with c1112:
-    t = f"<div>Name : <span class='highlight blue'>{tickerData.info['shortName']}</span></div>"
-    st.markdown(t, unsafe_allow_html=True)
-    t = f"<div>Market Cap : <span class='highlight blue'>{tickerData.info['marketCap']}</span></div>"
-    st.markdown(t, unsafe_allow_html=True)
-    st.write("")
-    if 'description' in tickerData.info:
-        string_summary = tickerData.info['description']
-        res= string_summary
-        st.info(res)
-    elif 'longBusinessSummary' in tickerData.info:
-        string_summary = tickerData.info['longBusinessSummary']
-        res= string_summary
-        st.info(res)
-    else:
-        pass
+
+
+st.header("")
+st.dataframe(df)
+def V_SPACE(lines):
+    for _ in range(lines):
+        st.write('&nbsp;')
+#Button To Download The Stock Data in A CSV Fromat
+def filedownload(df):
+    csv = df.to_csv(index=False)
+    b64 = base64.b64encode(csv.encode()).decode()
+    href = f"<a href = 'data:file/csv;base64, {b64}' download = 'Data.csv'><div><span class='highlight blue' id=download style=font-weight:700;>Download Data File</span></div></a>"
+    return href
+st.markdown(filedownload(df), unsafe_allow_html=True)
 
 
 st.markdown("-------------------------------------------------------------------------------------------------")
