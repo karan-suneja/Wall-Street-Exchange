@@ -59,7 +59,7 @@ hide_streamlit_style = """
         {display: none;}
     </style>
 """
-#st.markdown(hide_streamlit_style, unsafe_allow_html=True)
+st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 st.markdown("")
 
 #About
@@ -101,9 +101,6 @@ st.markdown("-------------------------------------------------------------------
     
 #Data Section
 st.title("\N{postbox}Stock/Crypto Data")
-
-
-
 st.header("")
 st.dataframe(df)
 def V_SPACE(lines):
