@@ -96,21 +96,22 @@ df = pd.DataFrame(tickerData.history(start=start_date, end=end_date))
 df.reset_index(inplace=True)
 df['Date'] = pd.to_datetime(df['Date']).dt.date
 
+#Button To Download The Stock Data in A CSV Fromat
+def filedownload(df):
+    csv = df.to_csv(index=False)
+    b64 = base64.b64encode(csv.encode()).decode()
+    href = f"<a href = 'data:file/csv;base64, {b64}' download = 'Data.csv'><div><span class='highlight blue' id=download style=font-weight:700;>Download Data File</span></div></a>"
+    return href
+
 with plpl2:
     #Data Section
     st.dataframe(df)
     def V_SPACE(lines):
         for _ in range(lines):
             st.write('&nbsp;')
-    #Button To Download The Stock Data in A CSV Fromat
-    def filedownload(df):
-        csv = df.to_csv(index=False)
-        b64 = base64.b64encode(csv.encode()).decode()
-        href = f"<a href = 'data:file/csv;base64, {b64}' download = 'Data.csv'><div><span class='highlight blue' id=download style=font-weight:700;>Download Data File</span></div></a>"
-        return href
-    st.markdown(filedownload(df), unsafe_allow_html=True)
+  
 
-
+plpl1.markdown(filedownload(df), unsafe_allow_html=True)
 
 st.markdown("-------------------------------------------------------------------------------------------------")
 
