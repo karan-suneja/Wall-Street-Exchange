@@ -71,9 +71,9 @@ if about_more:
     """)
 
 
+st.divider()
 
 
-# Collecting Data From The Internet
 
 
    
@@ -84,13 +84,13 @@ plpl1, plpl2 = st.columns(2)
 with plpl1:
     #Parameter Section
     st.subheader("Parameters")
-    st.markdown("")
     user_inp = st.text_input("\N{small blue diamond}Type Ticker of Stock/Crypto", "MSFT", help="Eg : Tesla = TSLA")
      #Start Date
     start_date = st.date_input("\N{calendar}Select Start Date", dt.date(2021, 1, 1), help = "Should Not Exceed Today's Date")
     #End Date
     end_date = st.date_input("\N{tear-off calendar}Select End Date", help = "Should Not Exceed Today's Date")
 
+# Collecting Data From The Internet
 tickerData = yf.Ticker(user_inp)
 df = pd.DataFrame(tickerData.history(start=start_date, end=end_date))
 df.reset_index(inplace=True)
@@ -113,7 +113,7 @@ with plpl2:
 
 plpl1.markdown(filedownload(df), unsafe_allow_html=True)
 
-st.markdown("-------------------------------------------------------------------------------------------------")
+st.divider()
 
 #Analysis Section
 st.title('\N{office building}Data Analysis')
