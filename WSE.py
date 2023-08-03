@@ -126,10 +126,12 @@ with c1112:
         string_summary = tickerData.info['description']
         res= string_summary
         st.info(res)
-    else:
+    elif 'longBusinessSummary' in tickerData.info::
         string_summary = tickerData.info['longBusinessSummary']
         res= string_summary
         st.info(res)
+    else:
+        pass
 
 
 st.markdown("-------------------------------------------------------------------------------------------------")
