@@ -126,7 +126,7 @@ with c1112:
         string_summary = tickerData.info['description']
         res= string_summary
         st.info(res)
-    elif 'longBusinessSummary' in tickerData.info::
+    elif 'longBusinessSummary' in tickerData.info:
         string_summary = tickerData.info['longBusinessSummary']
         res= string_summary
         st.info(res)
