@@ -70,7 +70,7 @@ if about_more:
         \n• \N{envelope}Leave a Message : https://www.linkedin.com/in/karansuneja/
     """)
 
-st.markdown("----------------------------------------------------")
+
 
 
 # Collecting Data From The Internet
@@ -83,7 +83,7 @@ st.title("\N{postbox}Stock/Crypto Data")
 plpl1, plpl2 = st.columns(2)
 with plpl1:
     #Parameter Section
-    st.subheader("\N{speech balloon}Parameters")
+    st.subheader("Parameters")
     st.markdown("")
     user_inp = st.text_input("\N{small blue diamond}Type Ticker of Stock/Crypto", "MSFT", help="Eg : Tesla = TSLA")
      #Start Date
