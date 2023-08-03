@@ -29,7 +29,7 @@ def local_css(file_name):
 local_css("style.css")
 
 #MAIN TITLE
-st.header("\N{Cyclone}WALL-STREET EXCHANGE")
+st.title("\N{Cyclone}WALL-STREET EXCHANGE")
 
 #MAIN IMG
 file = open("5.2.gif", "rb")
@@ -79,7 +79,7 @@ st.divider()
    
     
 
-st.title("\N{speech balloon}Stock/Crypto Data")
+st.header("\N{speech balloon}Stock/Crypto Data")
 plpl1, plpl2 = st.columns(2)
 with plpl1:
     #Parameter Section
