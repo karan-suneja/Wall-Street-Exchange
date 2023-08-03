@@ -101,6 +101,7 @@ st.markdown("-------------------------------------------------------------------
     
 #Data Section
 st.title("\N{postbox}Stock/Crypto Data")
+st.info
 c1111, c1112 = st.columns(2)
 with c1111:
     st.header("")
