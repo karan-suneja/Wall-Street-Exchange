@@ -239,8 +239,8 @@ if submitted3:
         fig.add_trace(go.Scatter(x=df["Date"],y=df["Close"], name="Close Price",line_color = "#0078FF", opacity = 0.40))
         fig.add_trace(go.Scatter(x=df["Date"],y=df["DEMA_short"], name="DEMA_short",line_color = "white"))
         fig.add_trace(go.Scatter(x=df["Date"],y=df["DEMA_long"], name="DEMA_long",line_color = "white"))
-        fig.add_trace(go.Scatter(x=df["Date"],y=df["Buy"], name="Buy Signal", line_color = "Green", mode='markers',marker=dict(size=10)))
-        fig.add_trace(go.Scatter(x=df["Date"],y=df["Sell"], name="Sell Signal", line_color ="Red", mode = 'markers', marker=dict(size=10)))
+        fig.add_trace(go.Scatter(x=df["Date"],y=df["Sell"], name="Buy Signal", line_color = "Green", mode='markers',marker=dict(size=10)))
+        fig.add_trace(go.Scatter(x=df["Date"],y=df["Buy"], name="Sell Signal", line_color ="Red", mode = 'markers', marker=dict(size=10)))
         fig.update_layout(autosize=False,width=850,height=500)
         fig.layout.update(plot_bgcolor="#0E1117", xaxis_rangeslider_visible=True)
         fig.update_layout(xaxis_showgrid=False, yaxis_showgrid=False)
@@ -273,7 +273,7 @@ if submitted3:
             form3.info("The Model has Predicted that You should Buy the Stocks/Crypto")
             
     bssignal(user_inp)
-    form3.warning("WARNING : Generated Predictions shouldn't Considered to be 100% Correct, This App only works on currently availbale aata of the Stock/Crypto.")
+    form3.warning("WARNING : Generated Predictions shouldn't Considered to be 100% Correct, This App only works on currently available data of the Stock/Crypto.")
 
 
 #FORM 4
