@@ -6,7 +6,7 @@ bs4
 requests
 tensorflow
 pandas_datareader
-yfinance =0.2.28
+yfinance==0.2.28
 plotly
 beautifulsoup4
 Pillow
