@@ -338,7 +338,7 @@ exp = st.expander("Experimental Feature")
 if exp :
     #Stock Predictor
     exp.header("Stock/Crypto Price Prediction")
-    t = f"<div>This feature predicts the Price of the Stock/Crypto using a <span class='highlight blue'>Machine Learning</span></div>"
+    t = f"<div>This feature predicts the Price of the Stock/Crypto using a <span class='highlight blue'>Machine Learning Model</span></div>"
     exp.markdown(t, unsafe_allow_html=True)
     exp.markdown("")
   
