@@ -112,8 +112,8 @@ with plpl2:
   
 
 
-t = f"<div>Name : <span class='highlight blue'>{tickerData.info['shortName']}</span></div>"
-plpl1.markdown(t, unsafe_allow_html=True)
+#t = f"<div>Name : <span class='highlight blue'>{tickerData.info['shortName']}</span></div>"
+#plpl1.markdown(t, unsafe_allow_html=True)
 plpl1.markdown(filedownload(df), unsafe_allow_html=True)
 
 st.divider()
