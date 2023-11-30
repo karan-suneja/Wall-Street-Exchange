@@ -95,7 +95,6 @@ tickerData = yf.Ticker(user_inp)
 df = pd.DataFrame(tickerData.history(start=start_date, end=end_date))
 df.reset_index(inplace=True)
 df['Date'] = pd.to_datetime(df['Date']).dt.date
-st.markdown(tickerData.info)
 
 #Button To Download The Stock Data in A CSV Fromat
 def filedownload(df):
