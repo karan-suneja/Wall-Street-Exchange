@@ -15,6 +15,7 @@ import numpy as np
 from bs4 import BeautifulSoup
 import requests
 from sklearn.preprocessing import MinMaxScaler
+from tensorflow.python import keras
 from tensorflow.python.keras import Sequential
 from tensorflow.python.keras.layers import Dense, LSTM, Dropout
 
